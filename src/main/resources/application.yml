@@ -41,3 +41,6 @@ logging:
         type:
           descriptor:
             sql: trace
+
+jwt:
+  secret: 'a8zS3vP!wR9bK2nF@uX7jG$qYc5tH1mE*oI4gLpD6hV_eZ0sN'
