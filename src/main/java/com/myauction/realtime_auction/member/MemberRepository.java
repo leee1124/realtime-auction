@@ -1,5 +1,6 @@
 package com.myauction.realtime_auction.member;
 
+import com.myauction.realtime_auction.member.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

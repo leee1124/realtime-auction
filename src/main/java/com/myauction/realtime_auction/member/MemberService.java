@@ -1,6 +1,7 @@
 package com.myauction.realtime_auction.member;
 
-import com.myauction.realtime_auction.member.dto.MemberSignUpRequest;
+import com.myauction.realtime_auction.member.domain.Member;
+import com.myauction.realtime_auction.member.dto.request.MemberSignUpRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public Long signUp(MemberSignUpRequest requestDto) {
+    public Long signUp(MemberSignUpRequestDTO requestDto) {
 
         if (memberRepository.findByUsername(requestDto.getUsername()).isPresent()) {
             throw new IllegalArgumentException("이미 존재하는 ID 입니다.");
@@ -31,4 +32,5 @@ public class MemberService {
         Member savedMember = memberRepository.save(member);
         return savedMember.getId();
     }
+
 }

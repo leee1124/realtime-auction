@@ -1,6 +1,6 @@
 package com.myauction.realtime_auction.member;
 
-import com.myauction.realtime_auction.member.dto.MemberSignUpRequest;
+import com.myauction.realtime_auction.member.dto.request.MemberSignUpRequestDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/signup")
-    public ResponseEntity<String> signUp(@RequestBody MemberSignUpRequest requestDto) {
+    public ResponseEntity<String> signUp(@RequestBody MemberSignUpRequestDTO requestDto) {
         @Valid
         Long memberId = memberService.signUp(requestDto);
         return ResponseEntity.ok("회원가입 성공! 회원 ID: " + memberId);
