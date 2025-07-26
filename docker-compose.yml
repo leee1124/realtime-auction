@@ -1,0 +1,30 @@
+# docker-compose.yml
+
+# Docker Compose 파일 버전
+version: '3.8'
+
+# 이 파일로 실행할 서비스(컨테이너)들의 목록
+services:
+  db:
+    image: postgres:16
+    container_name: myauction-db
+
+    # 컴퓨터를 껐다 켜도 Docker가 실행되면 이 컨테이너를 자동으로 다시 시작
+    restart: always
+
+    # docker run에서 -e로 줬던 환경 변수(설정)
+    environment:
+      - POSTGRES_USER=myauction_user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=myauction
+
+    ports:
+      - "5432:5432"
+
+    # 데이터 보존을 위한 볼륨 설정
+    volumes:
+      - myauction-db-data:/var/lib/postgresql/data
+
+# myauction-db-data 볼륨을 정의하는 부분
+volumes:
+  myauction-db-data:

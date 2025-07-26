@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: realtime-auction # 스프링부트 프로젝트 설정
+
+  # ---  데이터베이스 연결 설정  ---
+  datasource:
+    # Docker로 실행한 PostgreSQL에 접속하기 위한 주소
+    url: jdbc:postgresql://localhost:5432/myauction
+
+    # docker run 명령어로 설정했던 사용자 이름
+    username: myauction_user
+
+    # docker run 명령어로 설정했던 비밀번호
+    password: password
+
+    # PostgreSQL 드라이버를 사용.
+    driver-class-name: org.postgresql.Driver
+
+  # --- JPA 설정 추가 ---
+  jpa:
+    hibernate:
+      # 애플리케이션 실행 시점에 Java 클래스(@Entity)를 보고 데이터베이스 테이블을 자동으로 생성/변경해주는 설정
+      ddl-auto: update
+
+    properties:
+      hibernate:
+        # JPA가 실행하는 SQL 쿼리를 정렬하는 설정
+        format_sql: true
+
+    # 실행되는 SQL 쿼리를 터미널에 보여주는 설정
+    show-sql: true
+
+# ---  상세한 SQL 로그를 보고 싶을 때 추가 ---
+logging:
+  level:
+    org:
+      hibernate:
+        # 어떤 SQL문이 실행되는지
+        SQL: debug
+        # SQL문에 실제 어떤 값이 들어가는지 (? -> '홍길동')
+        type:
+          descriptor:
+            sql: trace
